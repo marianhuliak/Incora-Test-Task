@@ -1,10 +1,13 @@
+// src/components/Posts.js
+
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 
 const Posts = () => {
   const { userId } = useParams();
   const [posts, setPosts] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios.get(`https://jsonplaceholder.typicode.com/posts?userId=${userId}`)
@@ -16,17 +19,36 @@ const Posts = () => {
       });
   }, [userId]);
 
+  const handleAddNew = () => {
+    navigate(`/posts/${userId}/add`);
+  };
+
   return (
     <div>
       <h2>Posts by User {userId}</h2>
-      <ul>
-        {posts.map(post => (
-          <li key={post.id}>
-            <h3>{post.title}</h3>
-            <p>{post.body}</p>
-          </li>
-        ))}
-      </ul>
+      <button onClick={handleAddNew}>Add New</button>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {posts.map(post => (
+            <tr key={post.id}>
+              <td>{post.id}</td>
+              <td>{post.title}</td>
+              <td>
+                <Link to={`/posts/details/${post.id}`}>
+                  <button>Details</button>
+                </Link>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };
