@@ -1,5 +1,3 @@
-// src/components/Posts.js
-
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams, Link, useNavigate } from 'react-router-dom';
@@ -28,6 +26,7 @@ const Posts = () => {
       <h2>Posts by User {userId}</h2>
       <button onClick={handleAddNew}>Add New</button>
       <table>
+
         <thead>
           <tr>
             <th>ID</th>
@@ -35,6 +34,7 @@ const Posts = () => {
             <th>Actions</th>
           </tr>
         </thead>
+
         <tbody>
           {posts.map(post => (
             <tr key={post.id}>
@@ -48,6 +48,7 @@ const Posts = () => {
             </tr>
           ))}
         </tbody>
+        
       </table>
     </div>
   );

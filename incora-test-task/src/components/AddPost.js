@@ -1,11 +1,9 @@
-// src/components/AddPost.js
-
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 
 const AddPost = () => {
-  const { userId } = useParams();
+  const {userId} = useParams();
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
   const navigate = useNavigate();
@@ -28,10 +26,12 @@ const AddPost = () => {
       });
   };
 
+
   return (
     <div>
       <h2>Add New Post</h2>
       <form onSubmit={handleSubmit}>
+
         <div>
           <label>Title:</label>
           <input
@@ -41,6 +41,7 @@ const AddPost = () => {
             required
           />
         </div>
+
         <div>
           <label>Body:</label>
           <textarea
@@ -49,10 +50,13 @@ const AddPost = () => {
             required
           />
         </div>
+
         <button type="submit">Add Post</button>
+        
       </form>
     </div>
   );
+  
 };
 
 export default AddPost;

@@ -1,11 +1,9 @@
-// src/components/EditPost.js
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 
 const EditPost = () => {
-  const { postId } = useParams();
+  const {postId} = useParams();
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
   const navigate = useNavigate();
@@ -39,6 +37,7 @@ const EditPost = () => {
     <div>
       <h2>Edit Post</h2>
       <form onSubmit={handleSubmit}>
+
         <div>
           <label>Title:</label>
           <input
@@ -48,6 +47,7 @@ const EditPost = () => {
             required
           />
         </div>
+
         <div>
           <label>Body:</label>
           <textarea
@@ -56,7 +56,9 @@ const EditPost = () => {
             required
           />
         </div>
+
         <button type="submit">Update Post</button>
+        
       </form>
     </div>
   );
